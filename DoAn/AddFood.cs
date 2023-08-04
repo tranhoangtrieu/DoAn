@@ -15,9 +15,11 @@ namespace DoAn
     public partial class AddFood : Form
     {
         public Admin admin;
-        public AddFood()
+        int countRow;
+        public AddFood(int count)
         {
             InitializeComponent();
+            countRow = count;
             loadCategory();
             
         }
@@ -33,6 +35,15 @@ namespace DoAn
             string name = txt_nameFood.Text;
             int idCategory = (comboBox1.SelectedItem as Category).Id;           
             float price = float.Parse(txt_price.Text);
+
+           if(countRow < 1)
+            {
+                FoodDAO.Instance.FirstInsertFood(name, idCategory, price);
+                MessageBox.Show(" Thêm món thành công");
+            }
+
+
+
             if (FoodDAO.Instance.InsertFood( name, idCategory, price))
             {
                 MessageBox.Show(" Thêm món thành công");

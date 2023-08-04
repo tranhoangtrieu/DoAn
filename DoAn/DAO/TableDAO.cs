@@ -36,6 +36,13 @@ namespace DoAn.DAO
             return tableList;
         }
 
+        public bool FirstInsertTable()
+        {
+            string query = "INSERT INTO \"TableFood\" (\"name\", \"id\") VALUES ('Bàn 1',1)";
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
         public bool InsertTable()
         {
             string query = "INSERT INTO \"TableFood\" (\"name\", \"id\") SELECT 'Bàn ' || (max(\"id\")), (max(\"id\") + 1) FROM \"TableFood\"";

@@ -44,6 +44,13 @@ namespace DoAn.DAO
             }
             return category;
         }
+        public bool FirstInsertCategory(string name)
+        {
+            string query = "INSERT INTO \"FoodCategory\" (\"id\",\"name\") VALUES(1,'" + name + "')";
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
 
         public bool InsertCategory(string name)
         {

@@ -31,8 +31,14 @@ namespace DoAn.DAO
             return list;
 
         }
+        public bool FirstInsertFood(string name, int idCategory, float price)
+        {
 
-       
+            string query = "INSERT INTO \"Food\"(\"id\",\"name\",\"idCategory\",\"price\") VALUES (1,'"+name+"',"+idCategory+"  ,"+price+" )";
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
 
 
         public bool InsertFood(string name, int idCategory, float  price)

@@ -20,6 +20,10 @@ namespace DoAn
         BindingSource TableList = new BindingSource();
 
         public Account loginAccount;
+
+         
+
+
         public Admin()
         {
             
@@ -245,9 +249,12 @@ namespace DoAn
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AddFood food = new AddFood();
+            int count = datagrv_thucan.RowCount;
+            AddFood food = new AddFood(count);
 
             food.Show();
+
+
             
 
 
@@ -335,6 +342,15 @@ namespace DoAn
 
         private void button14_Click(object sender, EventArgs e)
         {
+            if(datagrv_banan.RowCount < 1)
+            {
+                TableDAO.Instance.FirstInsertTable();
+                MessageBox.Show("Thêm bàn thành công");
+                loadTableFood();
+
+            }
+            
+            
             if (TableDAO.Instance.InsertTable())
             {
                 MessageBox.Show("Thêm bàn thành công");
@@ -389,8 +405,21 @@ namespace DoAn
         }// sửa loại đồ ăn
         private void button3_Click_1(object sender, EventArgs e)// thêm loại đồ ăn
         {
-           
             string name = textBox1.Text;
+
+            if (datagrv_danhmuc.RowCount < 1)
+            {
+                CategoryDAO.Instance.FirstInsertCategory(name);
+                MessageBox.Show("Thêm loại đồ ăn thành công");
+                loadCategory();
+                loadcbCategory(comboBox1);
+                textBox1.Clear();
+                panel15.Hide();
+                
+            }
+
+
+            
             if (CategoryDAO.Instance.InsertCategory(name))
             {
                 MessageBox.Show("Thêm loại đồ ăn thành công");

@@ -557,6 +557,10 @@ ALTER TABLE ONLY public."Food"
     ADD CONSTRAINT food_idcategory_fkey FOREIGN KEY ("idCategory") REFERENCES public."FoodCategory"(id);
 
 
+
+INSERT INTO "Account" ("DisplayName","UserName","PassWord","Type") VALUES ('admin','admin','1',1)
+
+
 -- Completed on 2023-08-02 17:47:25
 
 --
