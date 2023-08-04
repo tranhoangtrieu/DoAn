@@ -347,6 +347,7 @@ namespace DoAn
                 TableDAO.Instance.FirstInsertTable();
                 MessageBox.Show("Thêm bàn thành công");
                 loadTableFood();
+                return;
 
             }
             
@@ -415,6 +416,7 @@ namespace DoAn
                 loadcbCategory(comboBox1);
                 textBox1.Clear();
                 panel15.Hide();
+                return;
                 
             }
 

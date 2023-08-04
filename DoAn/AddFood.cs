@@ -40,6 +40,7 @@ namespace DoAn
             {
                 FoodDAO.Instance.FirstInsertFood(name, idCategory, price);
                 MessageBox.Show(" Thêm món thành công");
+                return;
             }
 
 
