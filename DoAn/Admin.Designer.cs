@@ -40,6 +40,7 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -57,11 +58,14 @@
             this.button_timkiem = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.datagrv_thucan = new System.Windows.Forms.DataGridView();
+            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIdCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button_sua = new System.Windows.Forms.Button();
-            this.button_xoa = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button_xoa = new System.Windows.Forms.Button();
+            this.button_sua = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button7 = new System.Windows.Forms.Button();
             this.panel15 = new System.Windows.Forms.Panel();
@@ -72,6 +76,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.datagrv_danhmuc = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel7 = new System.Windows.Forms.Panel();
             this.txt_nameCategory = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -90,6 +96,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.datagrv_banan = new System.Windows.Forms.DataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel8 = new System.Windows.Forms.Panel();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
@@ -107,23 +116,14 @@
             this.txt_username = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.datagrv_Account = new System.Windows.Forms.DataGridView();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel13 = new System.Windows.Forms.Panel();
             this.btn_updateAccount = new System.Windows.Forms.Button();
             this.btn_deleteAccont = new System.Windows.Forms.Button();
             this.btn_addAccount = new System.Windows.Forms.Button();
-            this.ColId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIdCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -205,6 +205,7 @@
             this.datagrv_doanhthu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagrv_doanhthu.Location = new System.Drawing.Point(3, 3);
             this.datagrv_doanhthu.Name = "datagrv_doanhthu";
+            this.datagrv_doanhthu.ReadOnly = true;
             this.datagrv_doanhthu.RowHeadersWidth = 51;
             this.datagrv_doanhthu.RowTemplate.Height = 24;
             this.datagrv_doanhthu.Size = new System.Drawing.Size(929, 352);
@@ -284,6 +285,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thức ăn";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(217, 178);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(93, 47);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "Xem";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button8
             // 
@@ -374,6 +385,7 @@
             // 
             this.txt_idFood.Location = new System.Drawing.Point(88, 3);
             this.txt_idFood.Name = "txt_idFood";
+            this.txt_idFood.ReadOnly = true;
             this.txt_idFood.Size = new System.Drawing.Size(193, 22);
             this.txt_idFood.TabIndex = 6;
             this.txt_idFood.TextChanged += new System.EventHandler(this.txt_idFood_TextChanged);
@@ -445,10 +457,40 @@
             this.datagrv_thucan.Dock = System.Windows.Forms.DockStyle.Top;
             this.datagrv_thucan.Location = new System.Drawing.Point(0, 0);
             this.datagrv_thucan.Name = "datagrv_thucan";
+            this.datagrv_thucan.ReadOnly = true;
             this.datagrv_thucan.RowHeadersWidth = 51;
             this.datagrv_thucan.RowTemplate.Height = 24;
             this.datagrv_thucan.Size = new System.Drawing.Size(932, 251);
             this.datagrv_thucan.TabIndex = 0;
+            this.datagrv_thucan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.datagrv_thucan_KeyDown);
+            // 
+            // ColId
+            // 
+            this.ColId.DataPropertyName = "id";
+            this.ColId.HeaderText = "Mã";
+            this.ColId.MinimumWidth = 6;
+            this.ColId.Name = "ColId";
+            // 
+            // ColName
+            // 
+            this.ColName.DataPropertyName = "name";
+            this.ColName.HeaderText = "Tên món";
+            this.ColName.MinimumWidth = 6;
+            this.ColName.Name = "ColName";
+            // 
+            // colIdCategory
+            // 
+            this.colIdCategory.DataPropertyName = "idCategory";
+            this.colIdCategory.HeaderText = "Mã loại";
+            this.colIdCategory.MinimumWidth = 6;
+            this.colIdCategory.Name = "colIdCategory";
+            // 
+            // Colprice
+            // 
+            this.Colprice.DataPropertyName = "price";
+            this.Colprice.HeaderText = "Giá";
+            this.Colprice.MinimumWidth = 6;
+            this.Colprice.Name = "Colprice";
             // 
             // panel3
             // 
@@ -460,25 +502,15 @@
             this.panel3.Size = new System.Drawing.Size(208, 218);
             this.panel3.TabIndex = 0;
             // 
-            // button5
+            // button2
             // 
-            this.button5.Location = new System.Drawing.Point(217, 178);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(93, 47);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "Xem";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button_sua
-            // 
-            this.button_sua.Location = new System.Drawing.Point(16, 157);
-            this.button_sua.Name = "button_sua";
-            this.button_sua.Size = new System.Drawing.Size(93, 47);
-            this.button_sua.TabIndex = 2;
-            this.button_sua.Text = "Sửa";
-            this.button_sua.UseVisualStyleBackColor = true;
-            this.button_sua.Click += new System.EventHandler(this.button_sua_Click);
+            this.button2.Location = new System.Drawing.Point(16, 20);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(93, 47);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "Thêm";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button_xoa
             // 
@@ -490,15 +522,15 @@
             this.button_xoa.UseVisualStyleBackColor = true;
             this.button_xoa.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // button_sua
             // 
-            this.button2.Location = new System.Drawing.Point(16, 20);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(93, 47);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Thêm";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button_sua.Location = new System.Drawing.Point(16, 157);
+            this.button_sua.Name = "button_sua";
+            this.button_sua.Size = new System.Drawing.Size(93, 47);
+            this.button_sua.TabIndex = 2;
+            this.button_sua.Text = "Sửa";
+            this.button_sua.UseVisualStyleBackColor = true;
+            this.button_sua.Click += new System.EventHandler(this.button_sua_Click);
             // 
             // tabPage3
             // 
@@ -602,10 +634,26 @@
             this.Column2});
             this.datagrv_danhmuc.Location = new System.Drawing.Point(3, 3);
             this.datagrv_danhmuc.Name = "datagrv_danhmuc";
+            this.datagrv_danhmuc.ReadOnly = true;
             this.datagrv_danhmuc.RowHeadersWidth = 51;
             this.datagrv_danhmuc.RowTemplate.Height = 24;
             this.datagrv_danhmuc.Size = new System.Drawing.Size(926, 250);
             this.datagrv_danhmuc.TabIndex = 0;
+            this.datagrv_danhmuc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.datagrv_danhmuc_KeyDown);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "id";
+            this.Column1.HeaderText = "Mã";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "name";
+            this.Column2.HeaderText = "Tên loại";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
             // 
             // panel7
             // 
@@ -638,6 +686,7 @@
             // 
             this.txt_IdCategory.Location = new System.Drawing.Point(101, 26);
             this.txt_IdCategory.Name = "txt_IdCategory";
+            this.txt_IdCategory.ReadOnly = true;
             this.txt_IdCategory.Size = new System.Drawing.Size(180, 22);
             this.txt_IdCategory.TabIndex = 4;
             // 
@@ -746,6 +795,7 @@
             // 
             this.txt_idTable.Location = new System.Drawing.Point(91, 3);
             this.txt_idTable.Name = "txt_idTable";
+            this.txt_idTable.ReadOnly = true;
             this.txt_idTable.Size = new System.Drawing.Size(193, 22);
             this.txt_idTable.TabIndex = 4;
             // 
@@ -777,10 +827,33 @@
             this.Column5});
             this.datagrv_banan.Location = new System.Drawing.Point(3, 3);
             this.datagrv_banan.Name = "datagrv_banan";
+            this.datagrv_banan.ReadOnly = true;
             this.datagrv_banan.RowHeadersWidth = 51;
             this.datagrv_banan.RowTemplate.Height = 24;
             this.datagrv_banan.Size = new System.Drawing.Size(932, 242);
             this.datagrv_banan.TabIndex = 0;
+            this.datagrv_banan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.datagrv_banan_KeyDown);
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "id";
+            this.Column3.HeaderText = "Mã";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "name";
+            this.Column4.HeaderText = "Tên bàn";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "status";
+            this.Column5.HeaderText = "Trạng thái";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
             // 
             // panel8
             // 
@@ -949,17 +1022,47 @@
             this.datagrv_Account.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datagrv_Account.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagrv_Account.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column6,
             this.Column7,
+            this.Column6,
             this.Column8,
             this.Column9});
             this.datagrv_Account.Location = new System.Drawing.Point(6, 295);
             this.datagrv_Account.Name = "datagrv_Account";
+            this.datagrv_Account.ReadOnly = true;
             this.datagrv_Account.RowHeadersWidth = 51;
             this.datagrv_Account.RowTemplate.Height = 24;
             this.datagrv_Account.Size = new System.Drawing.Size(935, 202);
             this.datagrv_Account.TabIndex = 3;
             this.datagrv_Account.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
+            this.datagrv_Account.KeyDown += new System.Windows.Forms.KeyEventHandler(this.datagrv_Account_KeyDown);
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "DisplayName";
+            this.Column7.HeaderText = "Tên hiện thị";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "UserName";
+            this.Column6.HeaderText = "Tên tài khoản";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "PassWord";
+            this.Column8.HeaderText = "Mật khẩu";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "Type";
+            this.Column9.HeaderText = "Loại tài khoản";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
             // 
             // panel13
             // 
@@ -1000,97 +1103,6 @@
             this.btn_addAccount.Text = "Thêm";
             this.btn_addAccount.UseVisualStyleBackColor = true;
             this.btn_addAccount.Click += new System.EventHandler(this.btn_addAccount_Click);
-            // 
-            // ColId
-            // 
-            this.ColId.DataPropertyName = "id";
-            this.ColId.HeaderText = "Mã";
-            this.ColId.MinimumWidth = 6;
-            this.ColId.Name = "ColId";
-            // 
-            // ColName
-            // 
-            this.ColName.DataPropertyName = "name";
-            this.ColName.HeaderText = "Tên món";
-            this.ColName.MinimumWidth = 6;
-            this.ColName.Name = "ColName";
-            // 
-            // colIdCategory
-            // 
-            this.colIdCategory.DataPropertyName = "idCategory";
-            this.colIdCategory.HeaderText = "Mã loại";
-            this.colIdCategory.MinimumWidth = 6;
-            this.colIdCategory.Name = "colIdCategory";
-            // 
-            // Colprice
-            // 
-            this.Colprice.DataPropertyName = "price";
-            this.Colprice.HeaderText = "Giá";
-            this.Colprice.MinimumWidth = 6;
-            this.Colprice.Name = "Colprice";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "id";
-            this.Column1.HeaderText = "Mã";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "name";
-            this.Column2.HeaderText = "Tên loại";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "id";
-            this.Column3.HeaderText = "Mã";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "name";
-            this.Column4.HeaderText = "Tên bàn";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "status";
-            this.Column5.HeaderText = "Trạng thái";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "UserName";
-            this.Column6.HeaderText = "Tên tài khoản";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "DisplayName";
-            this.Column7.HeaderText = "Tên hiện thị";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "PassWord";
-            this.Column8.HeaderText = "Mật khẩu";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "Type";
-            this.Column9.HeaderText = "Loại tài khoản";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
             // 
             // Admin
             // 
@@ -1239,8 +1251,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
     }

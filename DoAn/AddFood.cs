@@ -33,28 +33,47 @@ namespace DoAn
                 return;
             }
             string name = txt_nameFood.Text;
-            int idCategory = (comboBox1.SelectedItem as Category).Id;           
-            float price = float.Parse(txt_price.Text);
+            int idCategory = (comboBox1.SelectedItem as Category).Id;
 
-           if(countRow < 1)
+
+
+            float price;
+            if (!float.TryParse(txt_price.Text, out price))
+            {
+                MessageBox.Show("Bảng giá vui lòng chỉ nhập số");
+                return;
+            }
+
+
+
+            if (countRow < 1)
             {
                 FoodDAO.Instance.FirstInsertFood(name, idCategory, price);
-                MessageBox.Show(" Thêm món thành công");
+                MessageBox.Show(" Thêm món thành công \n Vui lòng ấn \"Xem\" để tải lại danh mục !");
                 return;
+                this.Close();
             }
 
-
-
-            if (FoodDAO.Instance.InsertFood( name, idCategory, price))
+            try
             {
-                MessageBox.Show(" Thêm món thành công");
-                
+                if (FoodDAO.Instance.InsertFood(name, idCategory, price))
+                {
+                    MessageBox.Show(" Thêm món thành công \n Vui lòng ấn \"Xem\" để tải lại danh mục !");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(" Có lỗi khi thêm thức ăn !");
+                    return;
+                }
             }
-            else
+            catch
             {
                 MessageBox.Show(" Có lỗi khi thêm thức ăn !");
-                return;
             }
+
+            
+            
         }
         void loadCategory() // 
         {

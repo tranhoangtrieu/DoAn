@@ -18,7 +18,7 @@ namespace DoAn
         BindingSource CategoryList = new BindingSource();
         BindingSource AccountList = new BindingSource();
         BindingSource TableList = new BindingSource();
-
+        private bool isButtonOn = true;
         public Account loginAccount;
 
          
@@ -146,9 +146,7 @@ namespace DoAn
             {
                 if(datagrv_thucan.SelectedCells.Count > 0)
                 {
-                   
-                    
-                    int id = (int)datagrv_thucan.SelectedCells[0].OwningRow.Cells["idCategory"].Value;
+                    int id = (int)datagrv_thucan.SelectedCells[0].OwningRow.Cells["colIdCategory"].Value;
 
                     Category category = CategoryDAO.Instance.GetID(id);
                     comboBox1.SelectedItem = category;
@@ -182,8 +180,18 @@ namespace DoAn
 
         private void button_sua_Click(object sender, EventArgs e)
         {
-           button8.Show();
+            if (isButtonOn)
+            {
+                button8.Show();
+            }
+            else
+            {
+                button8.Hide();
+            }
+            isButtonOn = !isButtonOn;
         }
+
+        //------------------------------------------------------------------------------------------------- 
 
 
         // Danh mục món ăn
@@ -195,21 +203,49 @@ namespace DoAn
             DataTable dt = DataProvider.Instance.ExecuteQuery(query);
             datagrv_thucan.DataSource = dt;
             textBox_search.Clear();
+            if(datagrv_thucan.RowCount < 1)
+            {
+                query = "SELECT * FROM \"Food\" where \"name\" ILIKE '%" + Search + "%'  ORDER BY \"id\"";
+                DataTable newdt = DataProvider.Instance.ExecuteQuery(query);
+                datagrv_thucan.DataSource = newdt;
+                textBox_search.Clear();
+            }
         }
+
+
+        //------------------------------------------------------------------------------------------------- 
 
         private void button3_Click(object sender, EventArgs e)// xóa món ăn
         {
-            int id = Convert.ToInt32(txt_idFood.Text);
-            if (FoodDAO.Instance.DeleteFood(id))
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if( result == DialogResult.Yes)
             {
-                MessageBox.Show("Xóa món thành công ");
-                loadFood();
+                try
+                {
+                    int id = Convert.ToInt32(txt_idFood.Text);
+                    if (FoodDAO.Instance.DeleteFood(id))
+                    {
+                        MessageBox.Show("Xóa món thành công ");
+                        loadFood();
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi khi xóa món");
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Bạn không thể xóa món ăn bởi vì \n Món ăn này đã nằm trong Danh mục doanh thu");
+                }
             }
             else
             {
-                MessageBox.Show("Có lỗi khi xóa món");
+                MessageBox.Show("Không có thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+
+            
         }
         private void button8_Click(object sender, EventArgs e)
         {
@@ -222,6 +258,7 @@ namespace DoAn
                 MessageBox.Show("Sửa món thành công");
                 loadFood();
                 button8.Hide();
+                isButtonOn = true;
             }
             else
             {
@@ -229,24 +266,43 @@ namespace DoAn
             }
         }//sửa món ăn
 
+        private void datagrv_thucan_KeyDown(object sender, KeyEventArgs e)// xóa món ăn bằng nút delete
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        int id = Convert.ToInt32(txt_idFood.Text);
+                        if (FoodDAO.Instance.DeleteFood(id))
+                        {
+                            MessageBox.Show("Xóa món thành công ");
+                            loadFood();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Có lỗi khi xóa món");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Bạn không thể xóa món ăn bởi vì \n Món ăn này đã nằm trong Danh mục doanh thu");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
         private void label16_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            
-            panel15.Show();
-
-            
-           
-        }
-        private void btn_updateCategory_Click(object sender, EventArgs e)
-        {
-            button7.Show();
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             int count = datagrv_thucan.RowCount;
@@ -261,14 +317,26 @@ namespace DoAn
         }// Thêm món ăn (trên Form AddFood )
 
 
+        //-------------------------------------------------------------------------------------------------
+
         // Danh mục Tài khoản
 
         private void btn_addAccount_Click(object sender, EventArgs e)
         {
-           button4.Show();
-            txt_username.Clear();
-            txt_displayname.Clear();
-            txt_password.Clear();
+            if (isButtonOn)
+            {
+                button4.Show();
+                txt_username.Clear();
+                txt_displayname.Clear();
+                txt_password.Clear();
+
+            }
+            else
+            {
+                button4.Hide();
+            }
+            isButtonOn = !isButtonOn;
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -282,39 +350,65 @@ namespace DoAn
                 MessageBox.Show("Thêm tài khoản thành công");
                 loadAccount();
                 button4.Hide();
+                isButtonOn = true;
             }
             else
             {
                 MessageBox.Show("Có lỗi khi thêm tài khoản");
             }
+
+            //-------------------------------------------------------------------------------------------------
+
         }// thêm tài khoản
 
         private void btn_deleteAccont_Click(object sender, EventArgs e)
         {
             string UserName = txt_username.Text;
-           
-
-            if (loginAccount.UserName1.Equals(UserName))
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                MessageBox.Show("Bạn không thể xóa tài khoản đang sủ dụng");
-                return;
-            }
+                if (loginAccount.UserName1.Equals(UserName))
+                {
+                    MessageBox.Show("Bạn không thể xóa tài khoản đang sủ dụng");
+                    return;
+                }
 
-            if (AccountDAO.Instance.DeleteAccount(UserName))
-            {
-                MessageBox.Show("Xóa tài khoản thành công");
-                loadAccount();
+                if (AccountDAO.Instance.DeleteAccount(UserName))
+                {
+                    MessageBox.Show("Xóa tài khoản thành công");
+                    loadAccount();
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi xóa tài khoản");
+                }
+
             }
             else
             {
-                MessageBox.Show("Có lỗi khi xóa tài khoản");
+                MessageBox.Show("Không có thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            
+            
         }// xóa tài khoản
 
         private void btn_updateAccount_Click(object sender, EventArgs e)
         {
-            button6.Show();
-            
+            if (isButtonOn)
+            {
+                button6.Show();
+                txt_username.Enabled = false;
+
+            }
+            else
+            {
+                button6.Hide();
+                txt_username.Enabled = true;
+            }
+            isButtonOn = !isButtonOn;
+
+
         }
         private void button6_Click_1(object sender, EventArgs e)
         {
@@ -323,20 +417,56 @@ namespace DoAn
             string PassWord = txt_password.Text;
             int Type = (int)nb_typeAccount.Value;
 
-
+            txt_username.Enabled = true;
             if (AccountDAO.Instance.UpdateAccount(DisplayName, UserName, PassWord, Type))
             {
                 MessageBox.Show("Sửa tài khoản thành công");
                 loadAccount();
                 button6.Hide();
+                isButtonOn = true;
             }
             else
             {
                 MessageBox.Show("Có lỗi khi sửa tài khoản");
             }
         }// sửa thông tin tài khoản
+        private void datagrv_Account_KeyDown(object sender, KeyEventArgs e)// xóa tài khoản bằng nút delete
+        {
+            if(e.KeyCode == Keys.Delete)
+            {
+                string UserName = txt_username.Text;
+                DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    if (loginAccount.UserName1.Equals(UserName))
+                    {
+                        MessageBox.Show("Bạn không thể xóa tài khoản đang sủ dụng");
+                        return;
+                    }
 
-        
+                    if (AccountDAO.Instance.DeleteAccount(UserName))
+                    {
+                        MessageBox.Show("Xóa tài khoản thành công");
+                        loadAccount();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi khi xóa tài khoản");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Không có thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+
+            }
+
+        }
+
+        //-------------------------------------------------------------------------------------------------
+
 
         // Danh mục bàn ăn
 
@@ -360,33 +490,75 @@ namespace DoAn
         }// chức năng thêm bàn
         private void button13_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(txt_idTable.Text);
-            if (TableDAO.Instance.DeleteTable(id))
+
+            try
+            {
+                int id = Convert.ToInt32(txt_idTable.Text);
+                if (TableDAO.Instance.DeleteTable(id))
                 {
-                MessageBox.Show("Xóa bàn thành công");
-                loadTableFood();
+                    MessageBox.Show("Xóa bàn thành công");
+                    loadTableFood();
+                }
             }
+            catch { MessageBox.Show("      Bạn không thể xóa bàn này \n Bởi vì bàn này đã nằm trong Danh mục doanh thu"); }
 
         }// xóa bàn thành công
+        private void datagrv_banan_KeyDown(object sender, KeyEventArgs e)// xóa món ăn nút delete
+        {
+            if(e.KeyCode == Keys.Delete)
+            {
+                try
+                {
+                    int id = Convert.ToInt32(txt_idTable.Text);
+                    if (TableDAO.Instance.DeleteTable(id))
+                    {
+                        MessageBox.Show("Xóa bàn thành công");
+                        loadTableFood();
+                    }
+                }
+                catch { MessageBox.Show("      Bạn không thể xóa bàn này \n Bởi vì bàn này đã nằm trong Danh mục doanh thu"); }
+            }
+        }
 
 
+
+        //-------------------------------------------------------------------------------------------------
 
         //Danh mục loại đồ ăn
         private void btb_deleteCategory_Click(object sender, EventArgs e)// xóa loại đồ ăn
         {
+
             int id = Convert.ToInt32(txt_IdCategory.Text);
-            if (CategoryDAO.Instance.DeleteCategory(id))
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
             {
-                MessageBox.Show("Xóa loại đồ ăn thành công");
-                loadCategory();
-                loadcbCategory(comboBox1);
+                try
+                {
+                    if (CategoryDAO.Instance.DeleteCategory(id))
+                    {
+                        MessageBox.Show("Xóa loại đồ ăn thành công");
+                        loadCategory();
+                        loadcbCategory(comboBox1);
 
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi khi xóa loại đồ ăn");
+                    }
+                }
+                catch {
+                    MessageBox.Show("                   Bạn không thể xóa loại đồ ăn này \n Bởi vì món ăn của loại đồ ăn đã nằm trong Danh mục doanh thu");
+                }
             }
             else
             {
-                MessageBox.Show("Có lỗi khi xóa loại đồ ăn");
+                MessageBox.Show("Không có thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
+
+
+
         }
         private void button7_Click(object sender, EventArgs e)
         {
@@ -398,6 +570,8 @@ namespace DoAn
                 loadCategory();
                 loadcbCategory(comboBox1);
                 button7.Hide();
+                isButtonOn = true;
+
             }
             else
             {
@@ -429,17 +603,94 @@ namespace DoAn
                 loadcbCategory(comboBox1);
                 textBox1.Clear();
                 panel15.Hide();
+                isButtonOn = true;
             }
             else
             {
                 MessageBox.Show("Có lỗi khi thêm loại đồ ăn");
             }
         }
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (isButtonOn)
+            {
+                panel15.Show();
+
+            }
+            else
+            {
+                panel15.Hide();
+            }
+            isButtonOn = !isButtonOn;
+
+
+        }
+        private void btn_updateCategory_Click(object sender, EventArgs e)
+        {
+            if (isButtonOn)
+            {
+                button7.Show();
+            }
+            else
+            {
+                button7.Hide();
+            }
+            isButtonOn = !isButtonOn;
+
+        }
+
+        private void datagrv_danhmuc_KeyDown(object sender, KeyEventArgs e)// xóa loại đồ ăn bằng nút delete
+        {
+            if(e.KeyCode == Keys.Delete) 
+            {
+                int id = Convert.ToInt32(txt_IdCategory.Text);
+                DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        if (CategoryDAO.Instance.DeleteCategory(id))
+                        {
+                            MessageBox.Show("Xóa loại đồ ăn thành công");
+                            loadCategory();
+                            loadcbCategory(comboBox1);
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Có lỗi khi xóa loại đồ ăn");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("                   Bạn không thể xóa loại đồ ăn này \n Bởi vì món ăn của loại đồ ăn đã nằm trong Danh mục doanh thu");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+                else
+                {
+                    MessageBox.Show("Không có thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+
+        }
+
+        
+
+
+
 
 
         //-------------------------------------------------------------------------------------------------
-       
-       
-        
+
+
+
     }
-}
+

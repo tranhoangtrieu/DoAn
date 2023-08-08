@@ -42,7 +42,6 @@
             this.txt_matkhau.Name = "txt_matkhau";
             this.txt_matkhau.Size = new System.Drawing.Size(208, 22);
             this.txt_matkhau.TabIndex = 1;
-            this.txt_matkhau.Text = "1";
             this.txt_matkhau.UseSystemPasswordChar = true;
             // 
             // txt_taikhoan
@@ -51,7 +50,6 @@
             this.txt_taikhoan.Name = "txt_taikhoan";
             this.txt_taikhoan.Size = new System.Drawing.Size(208, 22);
             this.txt_taikhoan.TabIndex = 0;
-            this.txt_taikhoan.Text = "admin";
             this.txt_taikhoan.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txt_taikhoan_MaskInputRejected);
             // 
             // label1

@@ -53,8 +53,13 @@ namespace DoAn.DAO
         public bool DeleteFood(int id)
         {
             string query = "delete from \"Food\" where id=" + id;
+
             int result = DataProvider.Instance.ExecuteNonQuery(query);
-            return result > 0;
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool UpdateFood(string name, int id, float price,int idCategory)

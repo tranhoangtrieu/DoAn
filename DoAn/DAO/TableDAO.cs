@@ -38,7 +38,7 @@ namespace DoAn.DAO
 
         public bool FirstInsertTable()
         {
-            string query = "INSERT INTO \"TableFood\" (\"name\", \"id\") VALUES ('Bàn 1',1)";
+            string query = "INSERT INTO \"TableFood\" (\"name\", \"id\") VALUES ('Bàn 0',1)";
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
