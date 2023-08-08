@@ -470,6 +470,7 @@
             this.ColId.HeaderText = "Mã";
             this.ColId.MinimumWidth = 6;
             this.ColId.Name = "ColId";
+            this.ColId.ReadOnly = true;
             // 
             // ColName
             // 
@@ -477,6 +478,7 @@
             this.ColName.HeaderText = "Tên món";
             this.ColName.MinimumWidth = 6;
             this.ColName.Name = "ColName";
+            this.ColName.ReadOnly = true;
             // 
             // colIdCategory
             // 
@@ -484,6 +486,7 @@
             this.colIdCategory.HeaderText = "Mã loại";
             this.colIdCategory.MinimumWidth = 6;
             this.colIdCategory.Name = "colIdCategory";
+            this.colIdCategory.ReadOnly = true;
             // 
             // Colprice
             // 
@@ -491,6 +494,7 @@
             this.Colprice.HeaderText = "Giá";
             this.Colprice.MinimumWidth = 6;
             this.Colprice.Name = "Colprice";
+            this.Colprice.ReadOnly = true;
             // 
             // panel3
             // 
@@ -647,6 +651,7 @@
             this.Column1.HeaderText = "Mã";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // Column2
             // 
@@ -654,6 +659,7 @@
             this.Column2.HeaderText = "Tên loại";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // panel7
             // 
@@ -840,6 +846,7 @@
             this.Column3.HeaderText = "Mã";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // Column4
             // 
@@ -847,6 +854,7 @@
             this.Column4.HeaderText = "Tên bàn";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
@@ -854,6 +862,7 @@
             this.Column5.HeaderText = "Trạng thái";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // panel8
             // 
@@ -1042,6 +1051,7 @@
             this.Column7.HeaderText = "Tên hiện thị";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
             // 
             // Column6
             // 
@@ -1049,6 +1059,7 @@
             this.Column6.HeaderText = "Tên tài khoản";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
             // 
             // Column8
             // 
@@ -1056,6 +1067,7 @@
             this.Column8.HeaderText = "Mật khẩu";
             this.Column8.MinimumWidth = 6;
             this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
             // 
             // Column9
             // 
@@ -1063,6 +1075,7 @@
             this.Column9.HeaderText = "Loại tài khoản";
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
             // 
             // panel13
             // 
